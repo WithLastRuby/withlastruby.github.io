@@ -14,13 +14,16 @@
         <div id="update">
             <button onclick="this.innerText='읽었음'; setRead(23)" id="read">확인하기!!</button> 
         </div>
-        
+        <div id="next">
+            <p>Next</p>
+        </div>
     </div>
 
     <script>
         var title_element = document.getElementById("title");
         var detail_element = document.getElementById("detail");
         var update = document.getElementById("update")
+        var Next = document.getElementById("next")
         
         var structure_data = []
 
@@ -42,7 +45,6 @@
         structure_data["2300"] = {title : "샤워하세요", detail: " ", read: false,free: false}
         structure_data["0000"] = {title : "잘 시간이에요", detail: " ", read: false,free: false}
         
-
         function setRead(time) {
             structure_data[time + "00"].read = true
         }
@@ -55,6 +57,7 @@
                 console.log(structure_data[ hour + "00" ].read)
                 if (structure_data[ hour + "00" ].read == false) {
                     update.innerHTML = `<button onclick="this.innerText='읽었음'; setRead('${hour}') " id="read">확인하기!!</button>`
+                    Next.innerHTML = "다음할일 : " + structure_data[ `${Number(hour) + 1 }00` ].title
                 }
                 
             } else {
