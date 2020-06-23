@@ -26,7 +26,11 @@
         var Next = document.getElementById("next")
         
         var structure_data = []
-
+        var audioElement = new Audio('test.wav');
+        audioElement.addEventListener('loadeddata', () => {
+          let duration = audioElement.duration;
+          // The duration variable now holds the duration (in seconds) of the audio clip
+        })
         structure_data["0800"] = {title : "밥 먹는 시간 09시까지", detail: "" , read: false, free: false}
         structure_data["0900"] = {title : "선형대수 공부", detail: "https://www.edwith.org/linearalgebra4ai/joinLectures/14072 <br> https://www.youtube.com/watch?v=sDZB7ozFytk&list=PL9k2wIz8VsfOjzW_nU_yRPFBoyS5C7ttG&index=1 ", read: false,free: false}
         structure_data["1000"] = {title : "수학 (EBS) 공부", detail: " ", read: false,free: false}
@@ -74,8 +78,10 @@
             var min = timeSpl[1]
             setBanner( structure_data[ hour + "00" ].title , structure_data[ hour + "00" ].detail, structure_data[ hour + "00" ].read, hour)
             if (min == 50 && structure_data[hour + "00"].free == false) { 
+                audioElement.play()
                 alert('10분간 쉬세요')
                 structure_data[hour + "00"].free = true
+                
             }
         }
 
